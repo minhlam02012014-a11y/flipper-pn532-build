@@ -1,0 +1,27 @@
+name: "Build Flipper Application"
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  ufbt-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build FAP with uFBT
+        uses: flipperdevices/flipperzero-ufbt-action@v0.1
+        id: build-app
+        with:
+          app-dir: applications_user/pn532_pro
+          sdk-channel: release
+
+      - name: Upload FAP Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pn532_pro_fap
+          path: ${{ steps.build-app.outputs.fap-artifacts }}
+          
