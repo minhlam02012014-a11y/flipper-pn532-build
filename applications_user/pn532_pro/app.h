@@ -22,3 +22,4 @@ typedef struct {
     NotificationApp* notification;
     Pn532Dev* dev;
 } Pn532App;
+
