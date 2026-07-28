@@ -1,4 +1,5 @@
 #include "pn532_spi.h"
+#include <string.h>
 
 static uint8_t pn532_spi_swap_bits(uint8_t n) {
     n = ((n >> 1) & 0x55) | ((n << 1) & 0xAA);
