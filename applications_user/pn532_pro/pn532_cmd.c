@@ -1,4 +1,5 @@
 #include "pn532_cmd.h"
+#include <string.h>
 
 Pn532Dev* pn532_dev_alloc(void) {
     Pn532Dev* dev = malloc(sizeof(Pn532Dev));
