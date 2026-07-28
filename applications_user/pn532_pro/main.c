@@ -1,4 +1,6 @@
 #include "app.h"
+#include <stdio.h>
+#include <string.h>
 
 enum {
     SubmenuIndexScanTag,
