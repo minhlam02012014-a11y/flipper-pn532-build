@@ -48,8 +48,8 @@ bool pn532_spi_wait_ready(Pn532Spi* instance, uint32_t timeout_ms) {
         furi_hal_gpio_write(instance->cs_pin, false);
         furi_delay_us(10);
         
-        furi_hal_spi_tx(&furi_hal_spi_bus_handle_external, &stat_cmd, 1, 100);
-        furi_hal_spi_rx(&furi_hal_spi_bus_handle_external, &status, 1, 100);
+        furi_hal_spi_bus_tx(&furi_hal_spi_bus_handle_external, &stat_cmd, 1, 100);
+        furi_hal_spi_bus_rx(&furi_hal_spi_bus_handle_external, &status, 1, 100);
         
         furi_delay_us(10);
         furi_hal_gpio_write(instance->cs_pin, true);
@@ -95,7 +95,7 @@ bool pn532_spi_write_frame(Pn532Spi* instance, const uint8_t* data, uint16_t len
     furi_hal_gpio_write(instance->cs_pin, false);
     furi_delay_us(10);
 
-    furi_hal_spi_tx(&furi_hal_spi_bus_handle_external, tx_buf, idx, 100);
+    furi_hal_spi_bus_tx(&furi_hal_spi_bus_handle_external, tx_buf, idx, 100);
 
     furi_delay_us(10);
     furi_hal_gpio_write(instance->cs_pin, true);
@@ -114,8 +114,8 @@ bool pn532_spi_read_frame(Pn532Spi* instance, uint8_t* buffer, uint16_t len, uin
     furi_hal_gpio_write(instance->cs_pin, false);
     furi_delay_us(10);
 
-    furi_hal_spi_tx(&furi_hal_spi_bus_handle_external, &read_cmd, 1, 100);
-    furi_hal_spi_rx(&furi_hal_spi_bus_handle_external, raw_rx, fetch_len, 500);
+    furi_hal_spi_bus_tx(&furi_hal_spi_bus_handle_external, &read_cmd, 1, 100);
+    furi_hal_spi_bus_rx(&furi_hal_spi_bus_handle_external, raw_rx, fetch_len, 500);
 
     furi_delay_us(10);
     furi_hal_gpio_write(instance->cs_pin, true);
