@@ -20,25 +20,20 @@ static void submenu_callback(void* context, uint32_t index) {
         uint8_t uid_len = 0;
 
         if(pn532_read_passive_target(app->dev, uid, &uid_len)) {
-            char uid_str[64] = "UID:";
+            char uid_str[64] = "Quet Thanh Cong!\nUID:";
             for(uint8_t i = 0; i < uid_len; i++) {
                 snprintf(uid_str + strlen(uid_str), sizeof(uid_str) - strlen(uid_str), " %02X", uid[i]);
             }
-            
-            widget_add_string_element(app->widget, 5, 5, FontPrimary, "Quet Thanh Cong!");
-            widget_add_string_element(app->widget, 5, 25, FontSecondary, uid_str);
+            widget_add_string_multiline_element(app->widget, 5, 15, AlignLeft, AlignTop, FontPrimary, uid_str);
             notification_message(app->notification, &sequence_success);
         } else {
-            widget_add_string_element(app->widget, 5, 5, FontPrimary, "Khong Co The / Loi Hardware!");
-            widget_add_string_element(app->widget, 5, 25, FontSecondary, "Kiem tra DIP Switch & Cap SPI");
+            widget_add_string_multiline_element(app->widget, 5, 15, AlignLeft, AlignTop, FontPrimary, "Loi Hardware!\nKiem tra SPI & Switch");
             notification_message(app->notification, &sequence_error);
         }
         view_dispatcher_switch_to_view(app->view_dispatcher, Pn532AppViewWidget);
     } else if(index == SubmenuIndexAbout) {
         widget_reset(app->widget);
-        widget_add_string_element(app->widget, 5, 5, FontPrimary, "PN532 SPI Toolkit");
-        widget_add_string_element(app->widget, 5, 25, FontSecondary, "CS: PA4 | RST: PB2");
-        widget_add_string_element(app->widget, 5, 40, FontSecondary, "SCK: PA6 | MISO: PA7 | MOSI: PB3");
+        widget_add_string_multiline_element(app->widget, 5, 5, AlignLeft, AlignTop, FontSecondary, "PN532 SPI Toolkit\nCS: PA4 | RST: PB2\nSCK: PA6 | MISO: PA7\nMOSI: PB3");
         view_dispatcher_switch_to_view(app->view_dispatcher, Pn532AppViewWidget);
     }
 }
