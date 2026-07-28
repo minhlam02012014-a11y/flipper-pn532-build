@@ -2,13 +2,11 @@
 
 #include <furi.h>
 #include <furi_hal.h>
-#include <stdbool.h>
-#include <stdint.h>
 
-#define PN532_SPI_STATREAD  (0x02)
-#define PN532_SPI_DATAWRITE (0x01)
-#define PN532_SPI_DATAREAD  (0x03)
-#define PN532_SPI_READY     (0x01)
+#define PN532_SPI_STATREAD  0x02
+#define PN532_SPI_DATAWRITE 0x01
+#define PN532_SPI_DATAREAD  0x03
+#define PN532_SPI_READY     0x01
 
 typedef struct {
     const GpioPin* cs_pin;
