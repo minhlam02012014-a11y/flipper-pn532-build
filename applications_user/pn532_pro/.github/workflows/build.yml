@@ -13,15 +13,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build FAP with uFBT
-        uses: flipperdevices/fap-build-action@v1
+        uses: flipperdevices/flipperzero-ufbt-action@v0.1
+        id: build-app
         with:
-          appDir: applications_user/pn532_pro
-          sdkChannel: release
+          app-dir: applications_user/pn532_pro
+          sdk-channel: release
 
       - name: Upload FAP Artifact
         uses: actions/upload-artifact@v4
         with:
           name: pn532_pro_fap
-          path: applications_user/pn532_pro/dist/*.fap
-          if-no-files-found: error
+          path: ${{ steps.build-app.outputs.fap-artifacts }}
           
