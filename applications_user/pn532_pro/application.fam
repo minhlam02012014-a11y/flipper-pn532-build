@@ -1,0 +1,14 @@
+App(
+    appid="pn532_pro",
+    name="PN532 Pro",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="pn532_pro_app",
+    cdefines=["APP_PN532_PRO"],
+    requires=["gui", "notification"],
+    stack_size=2 * 1024,
+    order=20,
+    fap_category="NFC",
+    fap_author="DIY Dev",
+    fap_version="1.0",
+    fap_description="PN532 SPI NFC Toolkit for Flipper Zero",
+)
