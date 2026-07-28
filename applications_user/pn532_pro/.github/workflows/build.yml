@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build FAP with uFBT
-        uses: flipperdevices/fbt-action@v1
+        uses: flipperdevices/fap-build-action@v1
         with:
           appDir: applications_user/pn532_pro
           sdkChannel: release
